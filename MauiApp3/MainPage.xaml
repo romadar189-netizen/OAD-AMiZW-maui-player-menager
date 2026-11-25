@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp3.MainPage"
+             Title="Player Manager">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="12">
+            <Label Text="Player Manager" FontSize="30" FontAttributes="Bold" />
+
+            <Label Text="Dodaj gracza" FontSize="22" FontAttributes="Bold" />
+            <Entry Placeholder="Nazwa gracza" Text="{Binding PlayerName}" />
+            <Entry Placeholder="Poziom gracza" Keyboard="Numeric" Text="{Binding PlayerLevel}" />
+            <Button Text="Dodaj gracza" Command="{Binding AddPlayerCommandButton}" />
+
+            <Label Text="Lista graczy" FontSize="22" FontAttributes="Bold" Margin="0,12,0,0" />
+            <CollectionView ItemsSource="{Binding Players}" HeightRequest="220">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="55,*,100">
+                            <Label Grid.Column="0" Text="{Binding Id}" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+                            <Label Grid.Column="2" Text="{Binding Level}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Znajdź gracza" FontSize="22" FontAttributes="Bold" Margin="0,12,0,0" />
+            <Entry Placeholder="Podaj ID gracza" Keyboard="Numeric" Text="{Binding PlayerId}" />
+            <Button Text="Szukaj" Command="{Binding FindPlayerCommandButton}" />
+            <Label Text="{Binding SearchResult}" FontSize="16" />
+
+            <BoxView HeightRequest="1" Margin="0,8" Color="Gray" />
+            <Label Text="Usuń gracza" FontSize="22" FontAttributes="Bold" />
+            <Entry Placeholder="ID gracza do usunięcia" Keyboard="Numeric"
+                   Text="{Binding DeletePlayerId}" />
+            <Button Text="Usuń gracza" Command="{Binding DeletePlayerCommandButton}"
+                    BackgroundColor="#B3261E" TextColor="White" />
+
+            <BoxView HeightRequest="1" Margin="0,8" Color="Gray" />
+            <Label Text="Edytuj gracza" FontSize="22" FontAttributes="Bold" />
+            <Entry Placeholder="ID gracza" Keyboard="Numeric" Text="{Binding EditPlayerId}" />
+            <Entry Placeholder="Nowa nazwa" Text="{Binding EditPlayerName}" />
+            <Entry Placeholder="Nowy poziom" Keyboard="Numeric" Text="{Binding EditPlayerLevel}" />
+            <Button Text="Edytuj gracza" Command="{Binding EditPlayerCommandButton}" />
+
+            <Label Text="{Binding OperationResult}" FontSize="16"
+                   FontAttributes="Bold" Margin="0,8,0,20" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
